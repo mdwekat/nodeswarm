@@ -3,7 +3,7 @@
 # ThreadIt
 
 [![npm version](https://badge.fury.io/js/threadit.svg)](https://badge.fury.io/js/threadit)
-[![Known Vulnerabilities](https://snyk.io/test/github/omrilotan/threadit/badge.svg?targetFile=package.json)](https://snyk.io/test/github/omrilotan/threadit?targetFile=package.json)
+[![Known Vulnerabilities](https://snyk.io/test/github/mdwekat/threadit/badge.svg)](https://snyk.io/test/github/mdwekat/threadit)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > Efficiently manage and utilize worker threads in Node.js.
