@@ -1,7 +1,10 @@
 > :warning: **Warning:** This is an experimental package and may undergo significant changes. Please use with caution and feel free to report any issues or suggestions.
 
-
 # ThreadIt
+
+[![npm version](https://badge.fury.io/js/threadit.svg)](https://badge.fury.io/js/threadit)
+[![Known Vulnerabilities](https://snyk.io/test/github/omrilotan/threadit/badge.svg?targetFile=package.json)](https://snyk.io/test/github/omrilotan/threadit?targetFile=package.json)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > Efficiently manage and utilize worker threads in Node.js.
 
@@ -9,31 +12,16 @@ ThreadIt is a lightweight, easy-to-use library designed to simplify the process 
 worker threads in Node.js, enabling developers to easily leverage multi-core processing power for CPU-bound tasks.
 
 ### Motivation and Features
-`ThreadIt` was conceived out of a desire to simplify multithreading in Node.js, especially for TypeScript users. While Node.js offers the `worker_threads` module, it often requires dealing with separate JavaScript files and considerable boilerplate, shifting focus away from core application logic.
-
-`ThreadIt` stands out by allowing developers to directly execute any function in the codebase using threads, eliminating the need for separate files and reducing boilerplate. This is particularly advantageous for those using TypeScript, providing a seamless and more focused development experience. This library facilitates intelligent and efficient multithreading, enabling easy integration and optimal utilization of system resources, all while maintaining a simple and user-friendly API.
-
+`ThreadIt` was developed to simplify multithreading in Node.js, reducing the hassle and distraction from extensive boilerplate required by `worker_threads`. The library enables direct execution of any function using threads, removing the need for separate files, especially beneficial for TypeScript users, all within a clean and intuitive API.
 
 ## Features
-
-- **Efficient Multithreading:**
-  ThreadIt enables developers to easily create thread pools and dispatch tasks to worker threads, leveraging multi-core processing power for CPU-bound tasks, thus optimizing for performance and scalability.
-
-- **Virtual Threads:**
-  ThreadIt provides intelligent management of worker threads through its support for virtual threads, allowing users not to worry about manually managing the number of threads. It automatically handles the allocation and deallocation of threads, ensuring optimal performance and resource utilization.
-
-- **Simple and Intuitive API:**
-  ThreadIt offers a straightforward and easy-to-use API, making it simple to integrate and utilize in your projects, for creating thread pools and running tasks with minimal hassle.
-
-- **Graceful Error Handling:**
-  The library ensures graceful and informative handling of errors and thread termination, making debugging and resolving issues a breeze.
-
-- **Flexible Configuration:**
-  Adjustable pool sizes and various configurable options allow for fine-tuning to suit different needs and scenarios, providing flexibility in its integration.
-
+- **Efficiency:** Offers optimal performance and scalability through simplified multithreading and efficient management of CPU-bound tasks.
+- **Virtual Threads & Queue:** Ensures orderly and resource-efficient task execution.
+- **Simple API:** Guarantees easy integration and straightforward task execution.
+- **Error Handling:** Facilitates smooth debugging with concise error feedback.
+- **Flexibility:** Provides adjustable configurations to suit various needs.
 
 ## Installation
-
 Install ThreadIt using npm:
 
 ```shell
@@ -100,27 +88,27 @@ console.timeEnd('fib thread');
 
 ## Limitations
 
-`ThreadIt` operates within the boundaries of JavaScript and the Node.js runtime environment, and it’s important for users to be aware of the following limitations:
+`ThreadIt` offers a streamlined approach to multithreading in Node.js but has its constraints:
 
-1. **Independent Execution Contexts:**
-   Each thread runs in its own execution context, performing operations independently. This means that while `ThreadIt` enables parallel execution of code, operations within each separate execution context are single-threaded.
+1. **Independent Execution:** Threads run separately, and despite parallel execution, each context remains single-threaded.
+2. **Data Sharing:** Data between threads is copied, not shared. `SharedArrayBuffer` support is planned for the future.
+3. **Optimized for CPU-bound Tasks:** For I/O-bound tasks, Node.js’s asynchronous I/O is typically more efficient.
+4. **Overhead:** Multithreading introduces added complexity and might be excessive for simple applications.
+5. **Node.js Dependency:** Requires Node.js supporting `worker_threads` (experimental pre-11.7.0, stable from v12).
+6. **Incompatibility with Classes:** The library may not handle classes as expected.
+7. **Experimental Status:** Potential for bugs or API changes. Use cautiously in production.
 
-2. **Data Sharing Between Threads:**
-   Currently, data shared between threads is copied rather than shared, meaning any modification made to the data in the worker thread doesn’t reflect in the main thread or other worker threads. However, we are actively working to support `SharedArrayBuffer` for sharing memory between threads in future releases.
+Ensure `ThreadIt` aligns with your requirements before integrating it into projects.
 
-3. **Optimized for CPU-bound Tasks:**
-   `ThreadIt` is most advantageous for CPU-bound tasks. For I/O-bound tasks, using Node.js’s asynchronous, non-blocking I/O in the event-driven model is usually more efficient.
 
-4. **Complexity and Overhead:**
-   Introducing multithreading can bring additional complexity and overhead, and might be unnecessary for simple tasks or small-scale applications.
+## Security Consideration: Use of Eval
 
-5. **Node.js Version Dependency:**
-   `ThreadIt` requires a version of Node.js that supports the `worker_threads` module. This module is experimental in versions below 11.7.0 and is stable from Node.js 12 onwards.
+`ThreadIt` utilizes `eval()` internally to dynamically execute functions in worker threads. While this offers flexibility and ease of use, it also necessitates caution:
 
-6. **Experimental Status:**
-   As `ThreadIt` is an experimental package, there might be unforeseen bugs or issues, and API stability is not guaranteed. Usage in production environments should be approached with caution.
+- **Do not use `ThreadIt` to run untrusted or user-provided code.** Doing so can expose your application to significant security risks, including arbitrary code execution.
+- **Use exclusively with your own, well-reviewed code.** Ensure that the code being run with `ThreadIt` is secure and has been thoroughly reviewed to avoid potential security vulnerabilities.
 
-Use `ThreadIt` wisely after considering the above limitations, and determining whether multithreading is the right solution for your specific needs.
+By adhering strictly to these guidelines, you can mitigate risks associated with the use of `eval()` and safely enjoy the benefits of `ThreadIt`.
 
 
 ## API
