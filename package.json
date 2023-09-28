@@ -1,7 +1,7 @@
 {
   "name": "threadit",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "Lightweight library for managing worker threads and parallel execution of tasks in Node.js.",
   "main": "index.ts",
   "scripts": {
     "start": "rimraf dist && tsc && node ./dist/index.js",
