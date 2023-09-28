@@ -1,0 +1,37 @@
+# Ignore IDE files
+.idea
+.vscode
+
+# Ignore TypeScript source files
+src/
+
+# Ignore TypeScript configuration and declaration files
+tsconfig.json
+*.d.ts
+
+# Ignore any test files
+tests/
+*.test.ts
+
+# Ignore build scripts
+scripts/
+
+# Ignore documentation files
+docs/
+
+# Ignore development and environment config
+.npmrc
+*.env*
+
+# Ignore other unnecessary files
+*.log
+*.tmp
+*.swp
+.DS_Store
+
+# Ignore lock files
+package-lock.json
+yarn.lock
+
+# Ignore coverage reports
+coverage/

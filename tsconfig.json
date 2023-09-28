@@ -3,17 +3,17 @@
     "outDir": "./dist",
     "sourceMap": true,
     "baseUrl": "./src",
-    "incremental": true,
-    "target": "ESNext",
+    "target": "ES6",
     "module": "CommonJS",
+    "declaration": true,
     "strict": false,
     "noImplicitAny": false,
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*.ts"
   ],
   "exclude": [
     "node_modules",
