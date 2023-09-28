@@ -1,0 +1,14 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "outDir": "./test_tmp",
+        "rootDir": "./src",
+        "incremental": false,
+    },
+    "include": [
+        "src/worker.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

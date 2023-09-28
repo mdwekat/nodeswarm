@@ -1,0 +1,25 @@
+.vscode
+node_modules
+
+# IntelliJ project files
+.idea
+*.iml
+*.iws
+
+# Compiled Files
+dist
+
+# Logs and databases
+*.log
+*.sqlite
+
+
+# OS generated files
+.DS_Store
+ehthumbs.db
+
+
+# temp directory
+tmp
+temp
+test_tmp
